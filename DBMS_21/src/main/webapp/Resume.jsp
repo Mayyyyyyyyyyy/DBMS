@@ -1,19 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>­Ó¤H¼i¾ú</title>
+  <title>å€‹äººå±¥æ­·</title>
   <style>
+    .header{
+            display: flex;
+            background-color: rgb(184, 176, 176);
+        }
+
+      .header nav{
+          display: flex;
+          width: 100%;
+          justify-content: flex-end;
+          line-height: 25px;
+          font-size: 0px;
+      }
+
+      .header nav a{
+            display: inline-block;
+            padding: 10px;
+            color: blue;
+            font-size: 16px;
+        }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
     body {
       font-family: Arial, sans-serif;
     }
     h1 {
       color: #333;
+
     }
     label {
+      
       display: block;
       margin-bottom: 5px;
     }
@@ -33,52 +60,74 @@
 </head>
 <body>
   <header>
-    <h1>­Ó¤H¼i¾ú</h1>
+    
+    <div class="header">
+      <a class="logo" href="#">
+          <img src="1200x630wa.png" alt="">
+      </a>
+      <nav>
+        <a href="Homepage.jsp">é¦–é </a>
+        <a href="Resume.jsp">å±¥æ­·ç®¡ç†</a>
+        <a href="Login.jsp">ç™»å…¥</a>
+        <a href="Register0.jsp">è¨»å†Š</a>
+        <a href="Love.jsp">æˆ‘çš„æ”¶è—</a>
+      </nav>
+      
+  </div>
   </header>
   
-  <form>
-    <h2>°ò¥»¸ê°T</h2>
-    <label for="name">©m¦W¡G</label>
-    <input type="text" id="name" name="name">
-    <label for="email">Ápµ¸¤è¦¡¡G</label>
-    <input type="email" id="email" name="email">
-    <label for="phone">¹q¸Ü¸¹½X¡G</label>
+  <h1>å€‹äººå±¥æ­·</h1>
+  <div class='container'>
+
+  <!-- //zzzzzzzzzzzzzzzzzz -->
+  <!-- Gender Age Educationï¼šæ•™è‚²ç¨‹åº¦(ä¸‹æ‹‰å¼é¸å–®ï¼‰å¹´ç´š ç§‘ç³»
+ -->
+  <!-- <%// å¾è³‡æ–™åº«è£¡é¢æ‰¾
+    String name = null;
+    String gender = null;
+    int age = 0;
+    String grade =null;
+    String major = null;
+    String email = null;
+
+
+%> -->
+
+<h2>åŸºæœ¬è³‡è¨Š</h2>
+<!-- é€™é‚Šæœƒå°‡è¨»å†Šæ™‚å¡«å…¥çš„è³‡æ–™å¾è³‡æ–™åº«ç•¶ä¸­æ‰¾å‡ºä¾†æ”¾åœ¨é€™é‚Š -->
+<label for="name">å§“åï¼š</label>
+<input type="text" id="name" name="name" value="<%= name %>">
+<label for="gender">æ€§åˆ¥ï¼š</label>
+<input type="text" id="gender" name="gender" value="<%= gender %>">
+<label for="age">å¹´é½¡:</label>
+<input type="text" id="age" name="age" value="<%= age %>">
+<label for="grade">å¹´ç´š:</label>
+<input type="text" id="grade" name="grade" value="<%= grade %>">
+<label for="major">ç§‘ç³»:</label>
+<input type="text" id="major" name="major" value="<%= major %>">
+<label for="email">emailï¼š</label>
+<input type="email" id="email" name="email" value="<%= email %>">
+
+
+  <form action='${requestUri}' method='get'>
+    
+    
+    <label for="phone">é›»è©±è™Ÿç¢¼ï¼š</label>
     <input type="tel" id="phone" name="phone">
-    <label for="address">¦a§}¡G</label>
-    <textarea id="address" name="address"></textarea>
+    <!-- <label for="address">åœ°å€ï¼š</label>
+    <textarea id="address" name="address"></textarea> -->
+
+    <label for="intro">ç°¡ä»‹ï¼š</label>
+    <textarea id="intro" name="intro"></textarea>
   
-    <h2>±Ğ¨|­I´º</h2>
-    <label for="degree">¾Ç¾ú¡G</label>
-    <input type="text" id="degree" name="degree">
-    <label for="university">¾Ç®Õ¡G</label>
-    <input type="text" id="university" name="university">
-    <label for="gradYear">²¦·~¦~¥÷¡G</label>
-    <input type="text" id="gradYear" name="gradYear">
-    <label for="department">¬ì¨t¡G</label>
-    <select id="department" name="department">
-      <option value="">½Ğ¿ï¾Ü¬ì¨t</option>
-      <option value="­pºâ¾÷¬ì¾Ç">­pºâ¾÷¬ì¾Ç</option>
-      <option value="¸ê°TºŞ²z">¸ê°TºŞ²z</option>
-      <option value="¹q¤l¤uµ{">¹q¤l¤uµ{</option>
-      <option value="°Ó·~ºŞ²z">°Ó·~ºŞ²z</option>
-    </select>
   
-    <h2>¤u§@¸gÅç</h2>
-    <label for="company">¤½¥q¦WºÙ¡G</label>
-    <input type="text" id="company" name="company">
-    <label for="position">Â¾¦ì¡G</label>
-    <input type="text" id="position" name="position">
-    <label for="workDates">¤é´Á¡G</label>
-    <input type="text" id="workDates" name="workDates">
-    <label for="jobDescription">¤u§@´y­z¡G</label>
-    <textarea id="jobDescription" name="jobDescription"></textarea>
-  
-    <h2>§Ş¯à</h2>
-    <label for="skills">§Ş¯à¡G</label>
+    <!-- <h2>æŠ€èƒ½</h2> -->
+    <label for="skills">æŠ€èƒ½ï¼š</label>
     <textarea id="skills" name="skills"></textarea>
   
-    <button type="submit">Àx¦s</button>
+    <button type="submit">å„²å­˜</button>
   </form>
+</div>
   
   <footer>
     <p>&copy; 2023 Your Name</p>

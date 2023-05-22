@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +8,7 @@
  
   
 
-  <title>¨DÂ¾¥­¥x</title>
+  <title>æ±‚è·å¹³å°</title>
   <style>
     .header{
             display: flex;
@@ -70,7 +70,52 @@
             
     }
 
-    /* CSS µ{¦¡½X */
+    /* é€™é‚Šæ˜¯ç™½æ¡†æ¡†é–‹å§‹çš„css */
+    .container {
+      max-width: 800px;
+      margin: 80px auto 0;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .post {
+    max-width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-left: 100px; 
+    }
+
+ .post textarea {
+ width: 100%;
+    height: 500px;
+ border: none;
+    resize: none;
+    }
+
+    .post button {
+      display: block;
+      margin-top: 20px;
+      padding: 5px 10px;
+      background-color: #467adc;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .post button.clicked {
+      background-color: #e53b69;
+    }
+
+
+
+    
+
+    /* CSS ç¨‹å¼ç¢¼ */
   </style>
 </head>
 
@@ -80,10 +125,11 @@
         <img src="1200x630wa.png" alt="">
     </a>
     <nav>
-        <a href="Homepage.jsp">­º­¶</a>
-        <a href="Resume.jsp">¼i¾úºŞ²z</a>
-        <a href="Login.jsp">µn¤J</a>
-        <a href="Register.jsp">µù¥U</a>
+        <a href="Homepage.jsp">é¦–é </a>
+        <a href="Resume.jsp">å±¥æ­·ç®¡ç†</a>
+        <a href="Login.jsp">ç™»å…¥</a>
+        <a href="Register0.jsp">è¨»å†Š</a>
+        <a href="Love.jsp">æˆ‘çš„æ”¶è—</a>
     </nav>
     
 </div>
@@ -103,21 +149,93 @@
           <span class = "icon"><button type="submit"><image src = "search2.png"></image></button></span>
       </div>
     </div>
+
+
+    <div class="container">
+      <!-- æœå°‹çµæœåˆ—è¡¨ -->
+      <!-- æ¯å€‹æœå°‹çµæœé¡¯ç¤ºï¼šæ¨™é¡Œã€å…§å®¹ã€ç§è¨ŠæŒ‰éˆ•ã€æ”¶è—æŒ‰éˆ• -->
+      <div id="posts">
+    
+      <script>
+  
+        var postsData = [
+          {
+            jobtitle: 'è¡Œæ”¿åŠ©ç†',
+            content: 'è©³ç´°å…§å®¹ã€‚'
+          },
+          {
+            jobtitle: 'å‰ç«¯å·¥ç¨‹å¸«',
+            content: 'è©³ç´°å…§å®¹ã€‚'
+           
+          }
+        ];
+    
+        for (var i = 0; i < postsData.length; i++) {
+          var post = postsData[i];
+    
+        
+          var postElement = document.createElement('div');
+          postElement.className = 'post';
+    
+         
+          var jobtitleElement = document.createElement('div');
+          jobtitleElement.className = 'jobtitle';
+          jobtitleElement.textContent = post.jobtitle;
+          postElement.appendChild(jobtitleElement);
+    
+          // var salaryElement = document.createElement('div');
+          // salaryElement.className = 'salary';
+          // salaryElement.textContent = post.salary;
+          // postElement.appendChild(salaryElement);
+
+          // var requestElement = document.createElement('div');
+          // requestElement.className = 'request';
+          // requestElement.textContent = post.request;
+          // postElement.appendChild(requestElement);
+    
+          var contentElement = document.createElement('div');
+          contentElement.className = 'content';
+          contentElement.textContent = post.content;
+          postElement.appendChild(contentElement);
+  
+          var buttonElement = document.createElement('button');
+        buttonElement.textContent = 'æ”¶è—';
+        postElement.appendChild(buttonElement);
+
+        // Add click event listener to the button
+      buttonElement.addEventListener('click', function() {
+      // Toggle the "clicked" class on the button
+      this.classList.toggle('clicked');
+      });
+
+
+        var buttonElement1 = document.createElement('button');
+        buttonElement1.textContent = 'ç§è¨Š';
+        postElement.appendChild(buttonElement1);
+
+        buttonElement1.addEventListener('click', function() {
+            window.location.href = 'Chat1.jsp';
+        });
+  
+          document.getElementById('posts').appendChild(postElement);
+        }
+      </script>
+      </div></div >
     
     
     
-        <h2>¿z¿ï±ø¥ó</h2>
-        <!-- ¿z¿ï±ø¥óªí³æ -->
+        
       </div>
     </div>
+    
     <div>
-      <!-- ·j´Mµ²ªG¦Cªí -->
-      <!-- ¨C­Ó·j´Mµ²ªGÅã¥Ü¡G¼ĞÃD¡B¤½¥q¡B¦aÂI¡B¨p°T«ö¶s¡B¦¬ÂÃ«ö¶s -->
+      <!-- æœå°‹çµæœåˆ—è¡¨ -->
+      <!-- æ¯å€‹æœå°‹çµæœé¡¯ç¤ºï¼šæ¨™é¡Œã€å…¬å¸ã€åœ°é»ã€ç§è¨ŠæŒ‰éˆ•ã€æ”¶è—æŒ‰éˆ• -->
     </div>
   </main>
 
   <footer>
-    <p>ª©ÅvÁn©ú | Ápµ¸§Ú­Ì</p>
+   
   </footer>
 </body>
 
