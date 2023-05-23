@@ -48,14 +48,14 @@
   <div class="container">
     <h2>登入</h2>
     <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
-    <form id="loginForm" action="${requestUri}" method="GET">
+    <form action='${requestUri}' method='get'>
       <div class="form-group">
         <label for="account">帳號:</label>
-        <input type="text" id="loginAccount" required>
+        <input type="text" id="loginAccount" name="loginAccount" required>
       </div>
       <div class="form-group">
         <label for="password">密碼:</label>
-        <input type="password" id="loginPassword" required>
+        <input type="text" id="loginPassword" name="loginPassword" required>
       </div>
       <!-- <div class="form-group">
         <button type="submit">登入</button>
@@ -66,8 +66,9 @@
         <label><input type="radio" name="role" value="employer">雇主</label>
         <br><br><br>
         <!-- <input type="submit" value="下一步"> -->
+        
         <div class="form-group">
-            <button type = "submit">登入</button>
+            <input type = "submit" value='登入'>
           </div>
       </form>
     
@@ -100,11 +101,11 @@
       var selectedRole = document.querySelector('input[name="role"]:checked').value;
 
 
-      if (selectedRole === "employee") {
-            window.location.href = "Homepage.jsp"; // 求職者首頁
-          } else if (selectedRole === "employer") {
-            window.location.href = "HomepageForCompany.jsp"; // 重定向到雇主註冊页面
-          }
+//      if (selectedRole === "employee") {
+ //           window.location.href = "Homepage.jsp"; // 求職者首頁
+ //         } else if (selectedRole === "employer") {
+  //          window.location.href = "HomepageForCompany.jsp"; // 重定向到雇主註冊页面
+   //       }
     // 先將儲存在本地的帳號密碼拿來驗證（
     // var registeredAccount = localStorage.getItem("registeredAccount");
     // var registeredPassword = localStorage.getItem("registeredPassword");

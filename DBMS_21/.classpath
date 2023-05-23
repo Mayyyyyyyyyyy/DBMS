@@ -15,5 +15,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/jsoup-1.15.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/mysql-connector-j-8.0.33.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/mysql-socket-factory-connector-j-8-1.11.2-jar-with-driver-and-dependencies.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
