@@ -41,10 +41,12 @@ public class SetUp {
 
 			properties.setProperty("credentials", credentials.toString());
 
+			
 			conn = DriverManager.getConnection(jdbcUrl, properties);
+	        System.out.println(conn);
 			System.out.println("connected");
 
-			Statement statement = conn.createStatement();
+//			Statement statement = conn.createStatement();
 			// This line has the issue
 //    	    statement.executeUpdate("INSERT INTO USER\r\n"
 //    	    		+ "VALUES (01, 'aaaa', '0000', 'qqqqq', 'c');");
