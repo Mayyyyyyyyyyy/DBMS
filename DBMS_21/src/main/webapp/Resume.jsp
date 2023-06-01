@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -56,6 +55,8 @@
       border: none;
       cursor: pointer;
     }
+    
+    
   </style>
 </head>
 <body>
@@ -125,7 +126,8 @@
     <label for="skills">技能：</label>
     <textarea id="skills" name="skills"></textarea>
   
-    <button type="submit">儲存</button>
+   <!--  <button type="submit">儲存</button> -->
+    <input type = "submit" value='儲存' class="store-button">
   </form>
 </div>
   

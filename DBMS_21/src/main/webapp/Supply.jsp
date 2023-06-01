@@ -60,6 +60,19 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+    .supply-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .supply-button:hover{
+     	background-color: #45a049;
+    }
   
 
 </style>
@@ -97,7 +110,8 @@
     <textarea id="description" name="description" required></textarea><br><br>
     
     <div class="form-group">
-        <button type="submit">刊登</button>
+       <!--  <button type="submit">刊登</button> -->
+        <input type = "submit" value='刊登' class="supply-button">
     </div>
   </form>
 

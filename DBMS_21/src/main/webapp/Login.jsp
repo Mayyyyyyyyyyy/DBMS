@@ -41,6 +41,21 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+    .login-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .login-button:hover{
+     	background-color: #45a049;
+    
+    
+    }
   </style>
 </head>
 
@@ -68,7 +83,7 @@
         <!-- <input type="submit" value="下一步"> -->
         
         <div class="form-group">
-            <input type = "submit" value='登入'>
+            <input type = "submit" value='登入' class="login-button">
           </div>
       </form>
     

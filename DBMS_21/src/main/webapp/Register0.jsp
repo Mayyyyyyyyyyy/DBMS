@@ -42,6 +42,21 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+    .register0-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .register0-button:hover{
+     	background-color: #45a049;
+    
+    
+    }
   </style>
 </head>
 
@@ -78,12 +93,13 @@
     <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
     <form id="roleForm" action='${requestUri}' method="GET">
         <label for="role">身份：</label>
-        <label><input type="radio" name="role" value="employee">求職者</label>
-        <label><input type="radio" name="role" value="employer">雇主</label>
+        <label><input type="radio" name="registerRole" value="employee">求職者</label>
+        <label><input type="radio" name="registerRole" value="employer">雇主</label>
         <br><br><br>
         <!-- <input type="submit" value="下一步"> -->
         <div class="form-group">
-            <button type = "submit">下一步</button>
+        	<input type="submit" value='下一步' class="register0-button">
+            <!--  <button type = "submit">下一步</button>-->
           </div>
       </form>
     
@@ -91,7 +107,7 @@
         document.getElementById("roleForm").addEventListener("submit", function(event) {
           event.preventDefault(); // 阻止表單提交？
     
-          var selectedRole = document.querySelector('input[name="role"]:checked').value;
+          var selectedRole = document.querySelector('input[name="registerRole"]:checked').value;
           
           if (selectedRole === "employee") {
             window.location.href = "RegisterForEmployee1.jsp"; // 重定向到求職者註冊

@@ -42,6 +42,21 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+    .register1-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .register1-button:hover{
+     	background-color: #45a049;
+    
+    
+    }
   </style>
 </head>
 
@@ -76,19 +91,20 @@
     <form id="EmployeeRigisterForm" action='${requestUri}' method="GET">
       <div class="form-group">
         <label for="name">姓名:</label>
-        <input type="text" id="name" required>
+        <input type="text" id="name" name ="employeeName" required>
       </div>
       <div class="form-group">
         <label for="account">帳號:</label>
-        <input type="text" id="account" required>
+        <input type="text" id="account" name="employeeAccount" required>
       </div>
       <div class="form-group">
         <label for="password">密碼:</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" name="employeePassword" required>
       </div>
       
       <div class="form-group">
-        <button type = "submit">下一步</button>
+        <!--  <button type = "submit">下一步</button>-->
+        <input type = "submit" value='下一步' class="register1-button">
       </div>
     </form>
 

@@ -41,6 +41,21 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+     .register-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .register-button:hover{
+     	background-color: #45a049;
+    
+    
+    }
   </style>
 </head>
 
@@ -62,7 +77,7 @@
       </div>
       <div class="form-group">
         <label for="age">年齡:</label>
-        <input type="text" id="age" required>
+        <input type="text" id="age" name="age" required>
       </div>
       <div class="form-group">
         <label for="grade">年級:</label>
@@ -78,17 +93,17 @@
       </div>
       <div class="form-group">
         <label for="major">科系:</label>
-        <input type="text" id="major" required>
+        <input type="text" id="major" name= "major" required>
        
       </div>
 
       <div class="form-group">
         <label for="email">email：</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" name="email" required>
       </div>
 
       <div class="form-group">
-        <button type="submit">註冊</button>
+        <input type="submit" value='註冊' class="register-button">
       </div>
     </form>
     <p>已經有帳號了？<a href="Login.jsp">登入</a></p>

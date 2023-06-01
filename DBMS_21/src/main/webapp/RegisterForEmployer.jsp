@@ -52,6 +52,19 @@
     .form-group button:hover {
       background-color: #45a049;
     }
+    
+    .register2-button{
+    	width: 100%;
+      	padding: 8px;
+      	background-color: #4CAF50;
+      	color: white;
+      	border: none;
+     	cursor: pointer;
+    }
+    
+    .register2-button:hover{
+     	background-color: #45a049;
+    }
   </style>
 </head>
 
@@ -86,24 +99,27 @@
     <form id="EmployerRigisterForm" action='${requestUri}' method="GET">
       <div class="form-group">
         <label for="name">姓名:</label>
-        <input type="text" id="name" required>
+        <input type="text" id="name" name="employerName" required>
       </div>
       <div class="form-group">
         <label for="account">帳號:</label>
-        <input type="text" id="account" required>
+        <input type="text" id="account" name="employerAccount" required>
       </div>
       <div class="form-group">
         <label for="password">密碼:</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" name="employerPassword" required>
       </div>
       
       <div class="form-group">
-        <button type = "submit">註冊</button>
+        <!-- <button type = "submit">註冊</button> -->
+        <input type="submit" value='註冊' class="register2-button">
       </div>
     </form>
-
+ <p>已經有帳號了？<a href="Login.jsp">登入</a></p>
+  </div>
+</body>
     <script>
-      document.getElementById("EmployeeRigisterForm").addEventListener("submit", function(event) {
+      document.getElementById("EmployerRigisterForm").addEventListener("submit", function(event) {
         event.preventDefault(); // 阻止表單提交？
   
         var name = document.getElementById("name").value;
@@ -124,8 +140,6 @@
       });
     </script>
 
-    <p>已經有帳號了？<a href="Login.jsp">登入</a></p>
-  </div>
-</body>
+   
 
 </html>
