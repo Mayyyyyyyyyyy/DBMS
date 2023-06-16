@@ -102,18 +102,18 @@
       </script> -->
     </form>
     
-    <p>還沒有帳號？<a href="Register0.jsp">註冊</a></p>
+    <p>還沒有帳號？<a href="Register0Servlet">註冊</a></p>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // 阻止表單提交？
+    //document.getElementById("loginForm").addEventListener("submit", function(event) {
+      //event.preventDefault(); // 阻止表單提交？
   
       
     
-      var loginAccount = document.getElementById("loginAccount").value;
-      var loginPassword = document.getElementById("loginPassword").value;
-      var selectedRole = document.querySelector('input[name="role"]:checked').value;
+      //var loginAccount = document.getElementById("loginAccount").value;
+      //var loginPassword = document.getElementById("loginPassword").value;
+      //var selectedRole = document.querySelector('input[name="role"]:checked').value;
 
 
 //      if (selectedRole === "employee") {

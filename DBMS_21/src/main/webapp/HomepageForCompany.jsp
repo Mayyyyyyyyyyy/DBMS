@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,10 +78,10 @@
             <img src="1200x630wa.png" alt="">
         </a>
         <nav>
-            <a href="HomepageForCompany.jsp">首頁</a>
-            <a href="Supply.jsp">刊登職位</a>
-            <a href="Login.jsp">登入</a>
-            <a href="Register0.jsp">註冊</a>
+            <a href="CompanyServlet">首頁</a>
+            <a href="SupplyServlet">刊登職位</a>
+            <a href="LoginServlet">登入</a>
+            <a href="Register0Servlet">註冊</a>
 						<a href="Chat1.jsp">私訊</a>
 
             
@@ -89,44 +90,51 @@
     </div>
     <h2>公司主頁</h2>
     <div class="container">
-        
-        <div id="posts">
+        <c:if test="${not empty jobList}">
+			<c:forEach var="job" items="${jobList}">
+				<div class="post">
+					<div class="result">
+						${job.jobName}<br>${job.jContent}
+					</div>
+				</div>
+			</c:forEach>
+		</c:if>
       
         <script>
     
-          var postsData = [
-            {
-              jobtitle: '行政助理',
+          //var postsData = [
+            //{
+              //jobtitle: '行政助理',
             //   salary: '180 /hr',
             //   request:'文書處理能力',
-              content: '詳細內容。'
-            },
-            {
-              jobtitle: '前端工程師',
+              //content: '詳細內容。'
+            //},
+            //{
+              //jobtitle: '前端工程師',
             
-              content: '詳細內容。'
+              //content: '詳細內容。'
              
-            }
-          ];
+            //}
+          //];
       
-          for (var i = 0; i < postsData.length; i++) {
-            var post = postsData[i];
+          //for (var i = 0; i < postsData.length; i++) {
+            //var post = postsData[i];
 
-            var postElement = document.createElement('div');
-            postElement.className = 'post';
+            //var postElement = document.createElement('div');
+            //postElement.className = 'post';
 
-            var jobtitleElement = document.createElement('div');
-            jobtitleElement.className = 'jobtitle';
-            jobtitleElement.textContent = post.jobtitle;
-            postElement.appendChild(jobtitleElement);
+            //var jobtitleElement = document.createElement('div');
+            //jobtitleElement.className = 'jobtitle';
+            //jobtitleElement.textContent = post.jobtitle;
+            //postElement.appendChild(jobtitleElement);
 
-            var contentElement = document.createElement('div');
-            contentElement.className = 'content';
-            contentElement.textContent = post.content;
-            postElement.appendChild(contentElement);
+            //var contentElement = document.createElement('div');
+            //contentElement.className = 'content';
+            //contentElement.textContent = post.content;
+            //postElement.appendChild(contentElement);
 
-            document.getElementById('posts').appendChild(postElement);
-          }
+            //ocument.getElementById('posts').appendChild(postElement);
+          //}
         </script>
         </div></div >
     

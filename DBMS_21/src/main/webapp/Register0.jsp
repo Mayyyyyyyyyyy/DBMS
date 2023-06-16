@@ -110,13 +110,13 @@
           var selectedRole = document.querySelector('input[name="registerRole"]:checked').value;
           
           if (selectedRole === "employee") {
-            window.location.href = "RegisterForEmployee1.jsp"; // 重定向到求職者註冊
+            window.location.href = "RegisterServletC"; // 重定向到求職者註冊
           } else if (selectedRole === "employer") {
-            window.location.href = "RegisterForEmployer.jsp"; // 重定向到雇主註冊
+            window.location.href = "RegisterServletE"; // 重定向到雇主註冊
           }
         });
       </script>
-    <p>已經有帳號了？<a href="Login.jsp">登入</a></p>
+    <p>已經有帳號了？<a href="LoginServlet">登入</a></p>
   </div>
 </body>
 

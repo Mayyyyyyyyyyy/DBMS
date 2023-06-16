@@ -119,12 +119,12 @@
   </div>
 </body>
     <script>
-      document.getElementById("EmployerRigisterForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // 阻止表單提交？
+      //document.getElementById("EmployerRigisterForm").addEventListener("submit", function(event) {
+        //event.preventDefault(); // 阻止表單提交？
   
-        var name = document.getElementById("name").value;
-        var account = document.getElementById("account").value;
-        var password = document.getElementById("password").value;
+        //var name = document.getElementById("name").value;
+        //var account = document.getElementById("account").value;
+        //var password = document.getElementById("password").value;
 
         // 在此处使用获取到的值进行后续操作（可能用不到）
         // console.log("姓名: " + name);

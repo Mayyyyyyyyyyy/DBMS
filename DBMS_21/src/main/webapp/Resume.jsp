@@ -1,138 +1,260 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>個人履歷</title>
-  <style>
-    .header{
-            display: flex;
-            background-color: rgb(184, 176, 176);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人履歷</title>
+<style>
+.header {
+	display: flex;
+	background-color: rgb(184, 176, 176);
+}
 
-      .header nav{
-          display: flex;
-          width: 100%;
-          justify-content: flex-end;
-          line-height: 25px;
-          font-size: 0px;
-      }
+.header nav {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	line-height: 25px;
+	font-size: 0px;
+}
 
-      .header nav a{
-            display: inline-block;
-            padding: 10px;
-            color: blue;
-            font-size: 16px;
-        }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    body {
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      color: #333;
+.header nav a {
+	display: inline-block;
+	padding: 10px;
+	color: blue;
+	font-size: 16px;
+}
 
-    }
-    label {
-      
-      display: block;
-      margin-bottom: 5px;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    
-    
-  </style>
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.container2 {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 10px;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post {
+	max-width: 600px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.post textarea {
+	width: 100%;
+	height: 500px;
+	border: none;
+	resize: none;
+}
+
+.post button {
+	display: block;
+	margin-top: 20px;
+	padding: 5px 10px;
+	background-color: #467adc;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.post button.clicked {
+	background-color: #e53b69;
+}
+
+/* .container {
+	max-width: 400px;
+	margin: 20px auto;
+	padding: 20px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+} */
+body {
+	font-family: Arial, sans-serif;
+}
+
+h1 {
+	color: #333;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input, textarea {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
-  <header>
-    
-    <div class="header">
-      <a class="logo" href="#">
-          <img src="1200x630wa.png" alt="">
-      </a>
-      <nav>
-        <a href="Homepage.jsp">首頁</a>
-        <a href="Resume.jsp">履歷管理</a>
-        <a href="Login.jsp">登入</a>
-        <a href="Register0.jsp">註冊</a>
-        <a href="Love.jsp">我的收藏</a>
-      </nav>
-      
-  </div>
-  </header>
-  
-  <h1>個人履歷</h1>
-  <div class='container'>
+	<header>
 
-  <!-- //zzzzzzzzzzzzzzzzzz -->
-  <!-- Gender Age Education：教育程度(下拉式選單）年級 科系
+		<div class="header">
+			<a class="logo" href="#"> <img src="1200x630wa.png" alt="">
+			</a>
+			<nav>
+				<a href="SearchServlet">首頁</a> <a href="ResumeServlet">履歷管理</a> <a
+					href="LoginServlet">登入</a> <a href="Register0Servlet">註冊</a> <a
+					href="CollectServlet">我的收藏</a> <a href="RecommendServlet">工作推薦</a>
+			</nav>
+
+		</div>
+	</header>
+
+	<h1>個人履歷</h1>
+	<div class='container'>
+
+		<!-- //zzzzzzzzzzzzzzzzzz -->
+		<!-- Gender Age Education：教育程度(下拉式選單）年級 科系
  -->
-  <!-- <%// 從資料庫裡面找
-    String name = null;
-    String gender = null;
-    int age = 0;
-    String grade =null;
-    String major = null;
-    String email = null;
-
-
+		<!-- <%// 從資料庫裡面找
 %> -->
 
-<h2>基本資訊</h2>
-<!-- 這邊會將註冊時填入的資料從資料庫當中找出來放在這邊 -->
-<label for="name">姓名：</label>
-<input type="text" id="name" name="name" value="<%= name %>">
-<label for="gender">性別：</label>
-<input type="text" id="gender" name="gender" value="<%= gender %>">
-<label for="age">年齡:</label>
-<input type="text" id="age" name="age" value="<%= age %>">
-<label for="grade">年級:</label>
-<input type="text" id="grade" name="grade" value="<%= grade %>">
-<label for="major">科系:</label>
-<input type="text" id="major" name="major" value="<%= major %>">
-<label for="email">email：</label>
-<input type="email" id="email" name="email" value="<%= email %>">
+		<h2>基本資訊</h2>
+		<!-- 這邊會將註冊時填入的資料從資料庫當中找出來放在這邊 -->
+		<form action="${requestUri}" method="post" accept-charset="UTF-8">
+			<label for="userName">姓名:</label> <input type="text" name="userName"
+				value="${userName}" /><br /> <label for="email">Email:</label> <input
+				type="text" name="email" value="${email}" /><br /> <label
+				for="gender">性別:</label> <input type="text" name="gender"
+				value="${gender}" /><br /> <label for="age">年齡:</label> <input
+				type="text" name="age" value="${age}" /><br /> <label for="level">年級:</label>
+			<input type="text" name="level" value="${level}" /><br /> <label
+				for="department">科系:</label> <input type="text" name="department"
+				value="${department}" /><br /> <input type="submit" value="Save" />
+		</form>
+
+		<h2>專長一覽</h2>
+		<div class="container2">
+			<c:if test="${not empty skillList}">
+				<c:forEach var="skill" items="${skillList}">
+					<div class="post">
+						<div class="result">
+							<span style="display: none;">${skill.mID}</span>
+							${skill.skillName}
+						</div>
+						<button class="btn-deleteSkill" data-action2="deleteSkill"
+							data-skillid="${skill.mID}" onclick="deleteSkill(this)">刪除</button>
+					</div>
+				</c:forEach>
+			</c:if>
+			<a href="AddSkillServlet">新增專長</a>
+		</div>
+
+		<h2>履歷一覽</h2>
+		<div class="container2">
+			<c:if test="${not empty resumeList}">
+				<c:forEach var="resume" items="${resumeList}">
+					<div class="post">
+						<div class="result">
+							<span style="display: none;">${resume.resumeID}</span>
+							${resume.resumeName}<br>${resume.rContent}
+						</div>
+						<button class="btn-delete" data-action="delete"
+							data-resumeid="${resume.resumeID}" onclick="deleteResume(this)">刪除</button>
+					</div>
+				</c:forEach>
+			</c:if>
+			<a href="AddResumeServlet">新增履歷</a>
+		</div>
 
 
-  <form action='${requestUri}' method='get'>
-    
-    
-    <label for="phone">電話號碼：</label>
+		<script>
+				function deleteResume(button) {
+					var action = button.getAttribute('data-action');
+					var resumeID = button.getAttribute('data-resumeid');
+					var postElement = button.parentNode;
+
+					// 创建XMLHttpRequest对象
+					var xhttp = new XMLHttpRequest();
+
+					// 设置请求方法和URL
+					xhttp.open("GET", "ResumeServlet?action="
+							+ encodeURIComponent(action) + "&resumeID="
+							+ encodeURIComponent(resumeID), true);
+
+					// 定义回调函数，处理收藏成功后的逻辑
+					xhttp.onreadystatechange = function() {
+						if (xhttp.readyState === 4 && xhttp.status === 200) {
+							console.log("Resume deleted successfully.");
+							postElement.parentNode.removeChild(postElement);
+						}
+					};
+
+					// 发送请求
+					xhttp.send();
+				}
+				
+				function deleteSkill(button) {
+					var action2 = button.getAttribute('data-action2');
+					var mID = button.getAttribute('data-skillid');
+					var postElement = button.parentNode;
+
+					// 创建XMLHttpRequest对象
+					var xhttp = new XMLHttpRequest();
+
+					// 设置请求方法和URL
+					xhttp.open("GET", "ResumeServlet?action2="
+							+ encodeURIComponent(action2) + "&mID="
+							+ encodeURIComponent(mID), true);
+
+					// 定义回调函数，处理收藏成功后的逻辑
+					xhttp.onreadystatechange = function() {
+						if (xhttp.readyState === 4 && xhttp.status === 200) {
+							console.log("Skill deleted successfully.");
+							postElement.parentNode.removeChild(postElement);
+						}
+					};
+
+					// 发送请求
+					xhttp.send();
+				}
+			</script>
+
+
+
+		<!-- <label for="phone">電話號碼：</label>
     <input type="tel" id="phone" name="phone">
     <!-- <label for="address">地址：</label>
-    <textarea id="address" name="address"></textarea> -->
+    <textarea id="address" name="address"></textarea>
 
     <label for="intro">簡介：</label>
     <textarea id="intro" name="intro"></textarea>
   
   
-    <!-- <h2>技能</h2> -->
+    <h2>技能</h2>
     <label for="skills">技能：</label>
     <textarea id="skills" name="skills"></textarea>
-  
-   <!--  <button type="submit">儲存</button> -->
-    <input type = "submit" value='儲存' class="store-button">
-  </form>
-</div>
-  
-  <footer>
-    <p>&copy; 2023 Your Name</p>
-  </footer>
+  	<button type="submit">儲存</button> -->
+	</div>
+
+	<footer>
+		<p>&copy; 2023 Your Name</p>
+	</footer>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -125,11 +126,12 @@
         <img src="1200x630wa.png" alt="">
     </a>
     <nav>
-        <a href="Homepage.jsp">首頁</a>
-        <a href="Resume.jsp">履歷管理</a>
-        <a href="Login.jsp">登入</a>
-        <a href="Register0.jsp">註冊</a>
-        <a href="Love.jsp">我的收藏</a>
+        <a href="SearchServlet">首頁</a>
+        <a href="ResumeServlet">履歷管理</a>
+        <a href="LoginServlet">登入</a>
+        <a href="Register0Servlet">註冊</a>
+        <a href="CollectServlet">我的收藏</a>
+        <a href="RecommendServlet">工作推薦</a>
     </nav>
     
 </div>
@@ -138,50 +140,91 @@
   <main>
 
     
-    <div class="box">
+    <form class="box" action="${pageContext.request.contextPath}/SearchServlet" method="get">
       <div class="search">
         <span class="icon"><i class="fa fa-search"></i></span>
           <input
-              type="search"
+              type="text"
               id="search"
+              name="search"
               placeholder="Search..."
           />
           <span class = "icon"><button type="submit"><image src = "search2.png"></image></button></span>
       </div>
-    </div>
+    </form>
 
 
     <div class="container">
       <!-- 搜尋結果列表 -->
       <!-- 每個搜尋結果顯示：標題、內容、私訊按鈕、收藏按鈕 -->
       <div id="posts">
+      	<c:forEach var="job" items="${jobList}">
+          <div class="post">
+            <div class="result">
+            	<span style="display: none;">${job.jID}</span>
+            	<span style="display: none;">${job.cID}</span>
+            	${job.jobName}<br>
+            	${job.jContent}
+            </div>
+            <button class="btn-collect" data-action="collect" data-jid="${job.jID}" onclick="collectJob(this)">收藏</button>
+  			<button class="btn-message" data-action="message" data-cid="${job.cID}" onclick="message(this)">私訊</button>
+           </div>
+        </c:forEach>
     
       <script>
-  
-        var postsData = [
-          {
-            jobtitle: '行政助理',
-            content: '詳細內容。'
-          },
-          {
-            jobtitle: '前端工程師',
-            content: '詳細內容。'
+	
+	      function collectJob(button) {
+	    	    var action = button.getAttribute('data-action');
+	    	    var jID = button.getAttribute('data-jid');
+	    	    
+	    	    // 创建XMLHttpRequest对象
+	    	    var xhttp = new XMLHttpRequest();
+	    	    
+	    	    // 设置请求方法和URL
+	    	    xhttp.open("GET", "SearchServlet?action=" + encodeURIComponent(action) + "&jID=" + encodeURIComponent(jID), true);
+	    	    
+	    	    // 定义回调函数，处理收藏成功后的逻辑
+	    	    xhttp.onreadystatechange = function() {
+	    	      if (xhttp.readyState === 4 && xhttp.status === 200) {
+	    	        console.log("Job collected successfully.");
+	    	      }
+	    	    };
+	    	    
+	    	    // 发送请求
+	    	    xhttp.send();
+	    	  }
+
+	
+	      function message(button) {
+	    	    var cID = button.getAttribute('data-cid');
+	    	  
+	    	    // 導航到ChatServlet並將cID作為參數傳遞
+	    	    window.location.href = "MessageServlet?cID=" + encodeURIComponent(cID);
+	    	}  
+        //var postsData = [
+          //{
+            //jobtitle: '行政助理',
+            //content: '詳細內容。'
+          //},
+          //{
+            //jobtitle: '前端工程師',
+            //content: '詳細內容。'
            
-          }
-        ];
+          //}
+        //];
     
-        for (var i = 0; i < postsData.length; i++) {
-          var post = postsData[i];
+        //for (var i = 0; i < postsData.length; i++) {
+          //var post = postsData[i];
     
         
-          var postElement = document.createElement('div');
-          postElement.className = 'post';
+          //var postElement = document.createElement('div');
+          //postElement.className = 'post';
     
          
-          var jobtitleElement = document.createElement('div');
-          jobtitleElement.className = 'jobtitle';
-          jobtitleElement.textContent = post.jobtitle;
-          postElement.appendChild(jobtitleElement);
+          //var jobtitleElement = document.createElement('div');
+          //jobtitleElement.className = 'jobtitle';
+          //jobtitleElement.textContent = post.jobtitle;
+          //postElement.appendChild(jobtitleElement);
     
           // var salaryElement = document.createElement('div');
           // salaryElement.className = 'salary';
@@ -193,32 +236,32 @@
           // requestElement.textContent = post.request;
           // postElement.appendChild(requestElement);
     
-          var contentElement = document.createElement('div');
-          contentElement.className = 'content';
-          contentElement.textContent = post.content;
-          postElement.appendChild(contentElement);
+          //var contentElement = document.createElement('div');
+          //contentElement.className = 'content';
+          //contentElement.textContent = post.content;
+          //postElement.appendChild(contentElement);
   
-          var buttonElement = document.createElement('button');
-        buttonElement.textContent = '收藏';
-        postElement.appendChild(buttonElement);
+          //var buttonElement = document.createElement('button');
+       //buttonElement.textContent = '收藏';
+        //postElement.appendChild(buttonElement);
 
         // Add click event listener to the button
-      buttonElement.addEventListener('click', function() {
+      //buttonElement.addEventListener('click', function() {
       // Toggle the "clicked" class on the button
-      this.classList.toggle('clicked');
-      });
+      //this.classList.toggle('clicked');
+      //});
 
 
-        var buttonElement1 = document.createElement('button');
-        buttonElement1.textContent = '私訊';
-        postElement.appendChild(buttonElement1);
+        //var buttonElement1 = document.createElement('button');
+        //buttonElement1.textContent = '私訊';
+        //postElement.appendChild(buttonElement1);
 
-        buttonElement1.addEventListener('click', function() {
-            window.location.href = 'Chat1.jsp';
-        });
+        //buttonElement1.addEventListener('click', function() {
+            //window.location.href = 'Chat1.jsp';
+        //});
   
-          document.getElementById('posts').appendChild(postElement);
-        }
+          //document.getElementById('posts').appendChild(postElement);
+        //}
       </script>
       </div></div >
     

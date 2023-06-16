@@ -83,10 +83,10 @@
             <img src="1200x630wa.png" alt="">
         </a>
         <nav>
-            <a href="HomepageForCompany.jsp">首頁</a>
-            <a href="Supply.jsp">刊登職位</a>
-            <a href="Login.jsp">登入</a>
-            <a href="Register0.jsp">註冊</a>
+            <a href="CompanyServlet">首頁</a>
+            <a href="SupplyServlet">刊登職位</a>
+            <a href="LoginServlet">登入</a>
+            <a href="Register0Servlet">註冊</a>
         </nav>
         
     </div>
@@ -118,17 +118,17 @@
 
 
   <script>
-    document.getElementById("supplyForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // 阻止表單提交
+    //document.getElementById("supplyForm").addEventListener("submit", function(event) {
+      //event.preventDefault(); // 阻止表單提交
   
       
 
-      var jTitle = document.getElementById("jobTitle").value;
-      var jContent = document.getElementById("content").value;
+      //var jTitle = document.getElementById("jobTitle").value;
+      //var jContent = document.getElementById("content").value;
 
     
     
-  });
+  //});
   </script>
 </body>
 </html>

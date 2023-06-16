@@ -88,7 +88,7 @@
       </div>
     </form> -->
 
-    <form id="EmployeeRigisterForm" action='${requestUri}' method="GET">
+    <form id="EmployeeRigisterForm" action='${requestUri}' method='get'>
       <div class="form-group">
         <label for="name">姓名:</label>
         <input type="text" id="name" name ="employeeName" required>
@@ -109,12 +109,12 @@
     </form>
 
     <script>
-      document.getElementById("EmployeeRigisterForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // 阻止表單提交？
+      //document.getElementById("EmployeeRigisterForm").addEventListener("submit", function(event) {
+        //event.preventDefault(); // 阻止表單提交？
   
-        var name = document.getElementById("name").value;
-        var account = document.getElementById("account").value;
-        var password = document.getElementById("password").value;
+        //var name = document.getElementById("name").value;
+        //var account = document.getElementById("account").value;
+       // var password = document.getElementById("password").value;
 
         // 在此处使用获取到的值进行后续操作（可能用不到）
         // console.log("姓名: " + name);
@@ -123,12 +123,12 @@
         
         
         
-        window.location.href = "Intro.jsp"; // 求職者註冊页面
+        //window.location.href = "Intro.jsp"; // 求職者註冊页面
         
       });
     </script>
 
-    <p>已經有帳號了？<a href="Login.jsp">登入</a></p>
+    <p>已經有帳號了？<a href="LoginServlet">登入</a></p>
   </div>
 </body>
 
