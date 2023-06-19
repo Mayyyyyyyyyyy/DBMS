@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.auth.oauth2.GoogleCredentials;
 
@@ -27,9 +28,11 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
 
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -87,10 +90,14 @@ public class LoginServlet extends HttpServlet {
 		} else if(userManager.getCheckString().equals("l")) {
 			System.out.println("l");
 			if(userType.equals("c")) {
-				response.sendRedirect("SearchServlet");
+				response.sendRedirect("RecommendServlet");
+				session.setAttribute("loggedInUser", account);
+	            session.setAttribute("userType", userType);
 				return;
 			} else if(userType.equals("e")) {
 				response.sendRedirect("CompanyServlet");
+				session.setAttribute("loggedInUser", account);
+	            session.setAttribute("userType", userType);
 				return;
 			}
 		} else if(userManager.getCheckString().equals("!l")) {

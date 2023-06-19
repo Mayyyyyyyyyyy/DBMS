@@ -37,7 +37,7 @@ public class SupplyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -84,16 +84,17 @@ public class SupplyServlet extends HttpServlet {
 		try {
     		String sql = "SELECT cID FROM COMPANY WHERE uID = ?;";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId((String) request.getSession().getAttribute("loggedInUser")));
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
             	cID = rs.getInt("cID");
+            	System.out.println(cID);
             }
 		} catch (SQLException e) {
             e.printStackTrace();
         }
 		try {
-			System.out.println(userManager.getUserId() + " " + cID);
+			System.out.println(userManager.getUserId((String) request.getSession().getAttribute("loggedInUser")) + " " + cID);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -105,9 +106,10 @@ public class SupplyServlet extends HttpServlet {
         	statement.setString(2, jContent);
         	statement.setInt(3, cID);
         	statement.executeUpdate();
-        	String query2 = "UPDATE COMPANY SET jobNum = (SELECT COUNT(*)  FROM JOB  WHERE cID = ?)";
+        	String query2 = "UPDATE COMPANY SET jobNum = (SELECT COUNT(*) FROM JOB  WHERE cID = ?) WHERE cID = ?";
         	try (PreparedStatement statement2 = conn.prepareStatement(query2)) {
             	statement2.setInt(1, cID);
+            	statement2.setInt(2, cID);
             	statement2.executeUpdate();
         	} catch (SQLException e) {
                 System.out.println("更新失敗：" + e.getMessage());

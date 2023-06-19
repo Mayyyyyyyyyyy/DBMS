@@ -126,12 +126,10 @@
         <img src="1200x630wa.png" alt="">
     </a>
     <nav>
-        <a href="SearchServlet">首頁</a>
+    	<a href="RecommendServlet">工作推薦</a>
+    	<a href="CollectServlet">我的收藏</a>
         <a href="ResumeServlet">履歷管理</a>
-        <a href="LoginServlet">登入</a>
-        <a href="Register0Servlet">註冊</a>
-        <a href="CollectServlet">我的收藏</a>
-        <a href="RecommendServlet">工作推薦</a>
+        <a href="LoginServlet">登出</a>
     </nav>
     
 </div>

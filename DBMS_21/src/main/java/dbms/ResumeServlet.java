@@ -33,7 +33,7 @@ public class ResumeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -66,7 +66,7 @@ public class ResumeServlet extends HttpServlet {
         
 		int uID = 0;
 		try {
-			uID = userManager.getUserId();
+			uID = userManager.getUserId((String) request.getSession().getAttribute("loggedInUser"));
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -97,8 +97,8 @@ public class ResumeServlet extends HttpServlet {
 	    }
 
 	    // 转发到 Resume.jsp 页面
-	    request.setAttribute("skillList", getSkill(conn));
-	    request.setAttribute("resumeList", getResume(conn));
+	    request.setAttribute("skillList", getSkill(conn, (String) request.getSession().getAttribute("loggedInUser")));
+	    request.setAttribute("resumeList", getResume(conn, (String) request.getSession().getAttribute("loggedInUser")));
 	    request.getRequestDispatcher("Resume.jsp").forward(request, response);
 	    
 	    String action2 = request.getParameter("action2");
@@ -135,13 +135,13 @@ public class ResumeServlet extends HttpServlet {
         }
 	}
 	
-	private ArrayList<Resume> getResume(Connection conn) {
+	private ArrayList<Resume> getResume(Connection conn, String account) {
     	ArrayList<Resume> resumeList = new ArrayList<>();
 
     	try {
     		String sql = "SELECT * FROM RESUME WHERE uID = ?;";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId(account));
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -161,13 +161,13 @@ public class ResumeServlet extends HttpServlet {
         return resumeList;
     }
 	
-	private ArrayList<Skill> getSkill(Connection conn) {
+	private ArrayList<Skill> getSkill(Connection conn, String account) {
     	ArrayList<Skill> skillList = new ArrayList<>();
 
     	try {
     		String sql = "SELECT * FROM has WHERE uID = ?;";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId(account));
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -210,7 +210,7 @@ public class ResumeServlet extends HttpServlet {
 		
 	    int uID = 0;
 		try {
-			uID = userManager.getUserId();
+			uID = userManager.getUserId((String) request.getSession().getAttribute("loggedInUser"));
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

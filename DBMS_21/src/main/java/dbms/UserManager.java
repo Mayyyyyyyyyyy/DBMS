@@ -120,10 +120,10 @@ public class UserManager {
         return null;
     }
 
-    public int getUserId() throws SQLException {
+    public int getUserId(String account) throws SQLException {
         String query = "SELECT uID FROM USER WHERE account = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, loggedInUser);
+            statement.setString(1, account);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 return resultSet.getInt("uID");

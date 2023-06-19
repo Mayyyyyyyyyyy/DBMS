@@ -14,7 +14,7 @@ public class Search {
 //        um = new UserManager(connection);
 //    }
 
-    public static ArrayList<Job> searchJobsByKeyword(Connection conn, String keyword) {
+    public static ArrayList<Job> searchJobsByKeyword(Connection conn, String keyword, String account) {
     	ArrayList<Job> jobList = new ArrayList<>();
 
     	try {
@@ -24,7 +24,7 @@ public class Search {
                 statement.setString(1, "%" + keyword + "%");
 
                 ResultSet rs = statement.executeQuery();
-                saveSearchData(conn, keyword);
+                saveSearchData(conn, keyword, account);
 
                 while (rs.next()) {
                     // 從結果集中讀取資料並建立 Product 物件
@@ -47,11 +47,11 @@ public class Search {
         return jobList;
     }
 
-    public static void saveSearchData(Connection conn, String keyword) {
+    public static void saveSearchData(Connection conn, String keyword, String account) {
         String insertQuery = "INSERT INTO SEARCH (keyword, uID) VALUES (?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(insertQuery)) {
             statement.setString(1, keyword);
-            statement.setInt(2, LoginServlet.userManager.getUserId());
+            statement.setInt(2, LoginServlet.userManager.getUserId(account));
             statement.executeUpdate();
         } catch (SQLException e) {
         	e.printStackTrace();

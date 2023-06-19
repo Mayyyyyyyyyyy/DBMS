@@ -33,8 +33,7 @@ public class AddSkillServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
-
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
 		String databaseName = "jobsearchplatform";
@@ -109,7 +108,7 @@ public class AddSkillServlet extends HttpServlet {
 	            int mID = rs.getInt("mID");
 	            String query3 = "INSERT INTO has (uID, mID) VALUES (?, ?)";
 	            try (PreparedStatement statement2 = conn.prepareStatement(query3)) {
-	            	statement2.setInt(1, userManager.getUserId());
+	            	statement2.setInt(1, userManager.getUserId((String) request.getSession().getAttribute("loggedInUser")));
 	            	statement2.setInt(2, mID);
 	            	statement2.executeUpdate();
 	            	o = 1;

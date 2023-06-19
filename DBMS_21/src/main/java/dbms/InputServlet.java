@@ -35,7 +35,7 @@ public class InputServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -100,7 +100,7 @@ public class InputServlet extends HttpServlet {
 		}
 		String query = "INSERT INTO sendMessage (sID, rID, content) VALUES (?, ?, ?)";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-        	statement.setInt(1, userManager.getUserId());
+        	statement.setInt(1, userManager.getUserId((String) request.getSession().getAttribute("loggedInUser")));
         	statement.setInt(2, eID);
         	statement.setString(3, content);	
         	statement.executeUpdate();

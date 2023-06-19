@@ -30,7 +30,7 @@ public class SearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -64,7 +64,7 @@ public class SearchServlet extends HttpServlet {
 //		request.getRequestDispatcher("Homepage.jsp").forward(request, response);
 		String keyword = request.getParameter("search");
 		
-		ArrayList<Job> jobList = Search.searchJobsByKeyword(conn, keyword);
+		ArrayList<Job> jobList = Search.searchJobsByKeyword(conn, keyword, (String) request.getSession().getAttribute("loggedInUser"));
 		
 		request.setAttribute("jobList", jobList);
         request.getRequestDispatcher("Homepage.jsp").forward(request, response);
@@ -76,7 +76,7 @@ public class SearchServlet extends HttpServlet {
             String sql = "INSERT INTO COLLECT (uID, jID) VALUES (?, ?)";
 
     	    try (PreparedStatement statement = conn.prepareStatement(sql)) {
-    	        int uID = userManager.getUserId();
+    	        int uID = userManager.getUserId((String) request.getSession().getAttribute("loggedInUser"));
     	        System.out.println(request.getParameter("jID"));
     	        int jID = Integer.parseInt(request.getParameter("jID"));
     	        System.out.println(jID);

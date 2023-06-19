@@ -30,8 +30,7 @@ public class CompanyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
-
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
 		String databaseName = "jobsearchplatform";
@@ -61,17 +60,17 @@ public class CompanyServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
-		request.setAttribute("jobList", getJob(conn));
+		request.setAttribute("jobList", getJob(conn, (String) request.getSession().getAttribute("loggedInUser")));
 		request.getRequestDispatcher("HomepageForCompany.jsp").forward(request, response);
 	}
 	
-	private ArrayList<Job> getJob(Connection conn) {
+	private ArrayList<Job> getJob(Connection conn, String account) {
     	ArrayList<Job> jobList = new ArrayList<>();
 
     	try {
     		String sql = "SELECT cID FROM COMPANY WHERE uID = ?;";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId(account));
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {

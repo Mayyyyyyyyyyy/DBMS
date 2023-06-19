@@ -212,7 +212,7 @@ body {
 			<div class="msger-header-title">
 				<i class="fas fa-comment-alt"></i> 私訊
 				<nav>
-				<a href="SearchServlet">首頁</a> <a href="ResumeServlet">履歷管理</a> <a href="CollectServlet">我的收藏</a> <a href="RecommendServlet">工作推薦</a>
+				<a href="RecommendServlet">工作推薦</a> <a href="SearchServlet">職缺搜尋</a> <a href="CollectServlet">我的收藏</a> <a href="ResumeServlet">履歷管理</a>
 			</nav>
 			</div>
 			<div class="msger-header-options">

@@ -30,9 +30,8 @@ public class ChatServlet extends HttpServlet {
     public void init() throws ServletException {
         GoogleCredentials credentials;
         try {
-            credentials = GoogleCredentials.fromStream(new FileInputStream(
-                    "C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
-
+        	credentials = GoogleCredentials.fromStream(new FileInputStream(
+    				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
             // 建立資料庫連線
             String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
             String databaseName = "jobsearchplatform";
@@ -72,7 +71,7 @@ public class ChatServlet extends HttpServlet {
         
         if (request.getAttribute("firstTime") == null) {
             try {
-                sID = userManager.getUserId();
+                sID = userManager.getUserId((String) request.getSession().getAttribute("loggedInUser"));
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }

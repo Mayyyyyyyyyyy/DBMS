@@ -32,9 +32,8 @@ public class RecommendServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-                "C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
-
+    	GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
         // 建立資料庫連線
         String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
         String databaseName = "jobsearchplatform";
@@ -62,20 +61,20 @@ public class RecommendServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
 
-        ArrayList<Job> jobRecommendList = getRecommendJob(conn);
-        saveRecommendations(jobRecommendList, conn);
+        ArrayList<Job> jobRecommendList = getRecommendJob(conn, (String) request.getSession().getAttribute("loggedInUser"));
+        saveRecommendations(jobRecommendList, conn, (String) request.getSession().getAttribute("loggedInUser"));
 
         request.setAttribute("jobRecommendList", jobRecommendList);
         request.getRequestDispatcher("Recommend.jsp").forward(request, response);
     }
 
-    private ArrayList<Job> getRecommendJob(Connection conn) {
+    private ArrayList<Job> getRecommendJob(Connection conn, String account) {
         ArrayList<Job> jobRecommendList = new ArrayList<>();
 
         try {
             // 获取用户的專長名稱或部門
-            ArrayList<String> userSkills = getUserSkills(conn);
-            String userDepartment = getUserDepartment(conn);
+            ArrayList<String> userSkills = getUserSkills(conn, account);
+            String userDepartment = getUserDepartment(conn, account);
 
             // 构建用于匹配的关键词列表
             Set<String> keywords = new HashSet<>();
@@ -134,7 +133,7 @@ public class RecommendServlet extends HttpServlet {
         return jobRecommendList;
     }
 
-    private ArrayList<String> getUserSkills(Connection conn) {
+    private ArrayList<String> getUserSkills(Connection conn, String account) {
         ArrayList<String> userSkills = new ArrayList<>();
 
         try {
@@ -142,7 +141,7 @@ public class RecommendServlet extends HttpServlet {
                     + "WHERE has.uID = ?";
 
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId(account));
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
@@ -159,14 +158,14 @@ public class RecommendServlet extends HttpServlet {
         return userSkills;
     }
 
-    private String getUserDepartment(Connection conn) {
+    private String getUserDepartment(Connection conn, String account) {
         String userDepartment = "";
 
         try {
             String sql = "SELECT department FROM CANDIDATE " + "WHERE uID = ?";
 
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, userManager.getUserId());
+            statement.setInt(1, userManager.getUserId(account));
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
@@ -182,17 +181,17 @@ public class RecommendServlet extends HttpServlet {
         return userDepartment;
     }
 
-    private void saveRecommendations(ArrayList<Job> jobRecommendList, Connection conn) {
+    private void saveRecommendations(ArrayList<Job> jobRecommendList, Connection conn, String account) {
         try {
             // Step 1: Remove recommendations that are not in the list
-            Set<Integer> existingRecommendations = getExistingRecommendations(userManager.getUserId(), conn);
+            Set<Integer> existingRecommendations = getExistingRecommendations(userManager.getUserId(account), conn);
 
             String deleteSql = "DELETE FROM RECOMMEND WHERE uID = ? AND jID = ?";
             PreparedStatement deleteStatement = conn.prepareStatement(deleteSql);
 
             for (Integer jID : existingRecommendations) {
                 if (!containsJobID(jobRecommendList, jID)) {
-                    deleteStatement.setInt(1, userManager.getUserId());
+                    deleteStatement.setInt(1, userManager.getUserId(account));
                     deleteStatement.setInt(2, jID);
                     deleteStatement.executeUpdate();
                 }
@@ -207,7 +206,7 @@ public class RecommendServlet extends HttpServlet {
             for (Job job : jobRecommendList) {
                 int jID = job.getjID();
                 if (!existingRecommendations.contains(jID)) {
-                    insertStatement.setInt(1, userManager.getUserId());
+                    insertStatement.setInt(1, userManager.getUserId(account));
                     insertStatement.setInt(2, jID);
                     insertStatement.executeUpdate();
                 }

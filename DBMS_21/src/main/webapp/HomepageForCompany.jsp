@@ -78,11 +78,8 @@
             <img src="1200x630wa.png" alt="">
         </a>
         <nav>
-            <a href="CompanyServlet">首頁</a>
             <a href="SupplyServlet">刊登職位</a>
-            <a href="LoginServlet">登入</a>
-            <a href="Register0Servlet">註冊</a>
-						<a href="Chat1.jsp">私訊</a>
+            <a href="LoginServlet">登出</a>
 
             
         </nav>

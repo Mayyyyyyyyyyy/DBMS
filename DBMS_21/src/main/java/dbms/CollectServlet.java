@@ -32,7 +32,7 @@ public class CollectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(
-				"C:/Users/ryuuy/eclipse-workspace/DBMSteam21/organic-phoenix-387005-45309f4d7fba.json"));
+				"C:/apache-tomcat-9.0.75/webapps/DBMS_21/organic-phoenix-387005-45309f4d7fba.json"));
 
 		// 建立資料庫連線
 		String instanceConnectionName = "organic-phoenix-387005:asia-east1:ryuuyo39";
@@ -63,7 +63,7 @@ public class CollectServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
-		request.setAttribute("jobCollectedList", getCollectedJob(conn));
+		request.setAttribute("jobCollectedList", getCollectedJob(conn, (String) request.getSession().getAttribute("loggedInUser")));
 		request.getRequestDispatcher("Love.jsp").forward(request, response);
         
         String action = request.getParameter("action");
@@ -71,7 +71,7 @@ public class CollectServlet extends HttpServlet {
             String sql = "DELETE FROM COLLECT WHERE uID = ? AND jID = ?";
 
     	    try (PreparedStatement statement = conn.prepareStatement(sql)) {
-    	    	int uID = userManager.getUserId();
+    	    	int uID = userManager.getUserId((String) request.getSession().getAttribute("loggedInUser"));
     	        int jID = Integer.parseInt(request.getParameter("jID"));
     	        statement.setInt(1, uID);
     	        statement.setInt(2, jID);
@@ -85,13 +85,13 @@ public class CollectServlet extends HttpServlet {
         }
 	}
 	
-	private ArrayList<Job> getCollectedJob(Connection conn) {
+	private ArrayList<Job> getCollectedJob(Connection conn, String account) {
 	    ArrayList<Job> jobCollectedList = new ArrayList<>();
 
 	    try {
 	        String sql = "SELECT jID FROM COLLECT WHERE uID = ?";
 	        PreparedStatement statement = conn.prepareStatement(sql);
-	        statement.setInt(1, userManager.getUserId());
+	        statement.setInt(1, userManager.getUserId(account));
 	        ResultSet rs = statement.executeQuery();
 
 	        while (rs.next()) {
