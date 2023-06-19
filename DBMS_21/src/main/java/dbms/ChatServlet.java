@@ -76,11 +76,6 @@ public class ChatServlet extends HttpServlet {
                 e1.printStackTrace();
             }
             
-//            System.out.println(request.getParameter("cID"));
-            
-           
-//            System.out.println("cID: " + request.getParameter("cID"));
-            
             cID = MessageServlet.cID;
             System.out.println(cID);
             try {
@@ -97,10 +92,8 @@ public class ChatServlet extends HttpServlet {
             }
         }
 
-        // 从sendMessage表中获取相关的消息数据
         ArrayList<Message> messages = getMessages(sID, rID);
 
-        // 将消息数据传递给Chat1.jsp页面
         request.setAttribute("messages", messages);
         request.getRequestDispatcher("Chat1.jsp").forward(request, response);
     }

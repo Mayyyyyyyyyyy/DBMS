@@ -69,10 +69,8 @@ public class AddResumeServlet extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("AddResume.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
-//		request.getRequestDispatcher("Supply.jsp").forward(request, response);
 		resumeName = request.getParameter("resumeTitle");
 		rContent = request.getParameter("description");
 		
@@ -84,7 +82,7 @@ public class AddResumeServlet extends HttpServlet {
         	statement.executeUpdate();
         	o = 1;
         } catch (SQLException e) {
-            System.out.println("新增失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
 		System.out.println("o");
         if(o == 1) {

@@ -72,10 +72,8 @@ public class SupplyServlet extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("Supply.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
-//		request.getRequestDispatcher("Supply.jsp").forward(request, response);
 		
 		jobName = request.getParameter("jobTitle");
 		System.out.println(jobName);
@@ -112,11 +110,11 @@ public class SupplyServlet extends HttpServlet {
             	statement2.setInt(2, cID);
             	statement2.executeUpdate();
         	} catch (SQLException e) {
-                System.out.println("更新失敗：" + e.getMessage());
+        		e.printStackTrace();
             }
         	o = 1;
         } catch (SQLException e) {
-            System.out.println("新增失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
 		System.out.println("o");
         if(o == 1) {

@@ -27,7 +27,6 @@ public class Search {
                 saveSearchData(conn, keyword, account);
 
                 while (rs.next()) {
-                    // 從結果集中讀取資料並建立 Product 物件
                 	int jID = rs.getInt("jID");
                     String jobName = rs.getString("jobName");
                     String jContent = rs.getString("jContent");

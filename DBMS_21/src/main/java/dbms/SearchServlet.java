@@ -61,7 +61,6 @@ public class SearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
-//		request.getRequestDispatcher("Homepage.jsp").forward(request, response);
 		String keyword = request.getParameter("search");
 		
 		ArrayList<Job> jobList = Search.searchJobsByKeyword(conn, keyword, (String) request.getSession().getAttribute("loggedInUser"));
@@ -71,8 +70,6 @@ public class SearchServlet extends HttpServlet {
         
         String action = request.getParameter("action");
         if (action != null && action.equals("collect")) {
-//            String jobName = request.getParameter("jobName");
-//            System.out.println(jobName);
             String sql = "INSERT INTO COLLECT (uID, jID) VALUES (?, ?)";
 
     	    try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -81,23 +78,19 @@ public class SearchServlet extends HttpServlet {
     	        int jID = Integer.parseInt(request.getParameter("jID"));
     	        System.out.println(jID);
     	        
-    	        // 检查uID和jID是否已存在
     	        if (isEntryExist(uID, jID)) {
     	            System.out.println("Entry already exists.");
-    	            return; // 中止执行
+    	            return;
     	        }
 
     	        statement.setInt(1, uID);
     	        statement.setInt(2, jID);
     	        System.out.println(jID);
-    	        // 执行插入收藏条目的SQL语句
     	        statement.executeUpdate();
     	        System.out.println("Job collected successfully.");
     	    } catch (SQLException e) {
     	        e.printStackTrace();
-    	        // 处理插入操作期间发生的任何错误
     	    }
-//            System.out.println("Job collected successfully.");
         }
         
         try {
@@ -108,7 +101,6 @@ public class SearchServlet extends HttpServlet {
 		}
 	}
 
-	// 检查uID和jID是否已存在
 	private boolean isEntryExist(int uID, int jID) {
 	    String sql = "SELECT COUNT(*) FROM COLLECT WHERE uID = ? AND jID = ?";
 	    try (PreparedStatement statement = conn.prepareStatement(sql)) {

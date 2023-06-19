@@ -65,7 +65,6 @@ public class RegisterServletC extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("RegisterForEmployee1.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
 		
@@ -75,7 +74,6 @@ public class RegisterServletC extends HttpServlet {
 		password = request.getParameter("employeePassword");
 		email = "";
 		userType = "c";
-//		
 		userManager = new UserManager(conn);
 		userManager.register(userName, account, password, email, userType);
 		if (userManager.getCheckString2().equals("l")) {

@@ -72,14 +72,12 @@ public class ResumeServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 	    if (uID > 0) {
-	        // 查询数据库获取数据
 	        String query = "SELECT USER.userName, USER.email, CANDIDATE.gender, CANDIDATE.age, CANDIDATE.level, CANDIDATE.department FROM USER, CANDIDATE WHERE USER.uID = CANDIDATE.uID AND USER.uID = ?";
 	        try {
 	            PreparedStatement stmt = conn.prepareStatement(query);
 	            stmt.setInt(1, uID);
 	            ResultSet rs = stmt.executeQuery();
 
-	            // 将查询结果设置到请求属性中
 	            if (rs.next()) {
 	                request.setAttribute("userName", rs.getString("userName"));
 	                request.setAttribute("email", rs.getString("email"));
@@ -96,7 +94,6 @@ public class ResumeServlet extends HttpServlet {
 	        }
 	    }
 
-	    // 转发到 Resume.jsp 页面
 	    request.setAttribute("skillList", getSkill(conn, (String) request.getSession().getAttribute("loggedInUser")));
 	    request.setAttribute("resumeList", getResume(conn, (String) request.getSession().getAttribute("loggedInUser")));
 	    request.getRequestDispatcher("Resume.jsp").forward(request, response);
@@ -109,13 +106,10 @@ public class ResumeServlet extends HttpServlet {
     	        int mID = Integer.parseInt(request.getParameter("mID"));
     	        statement.setInt(1, uID);
     	        statement.setInt(2, mID);
-//    	        System.out.println(mID);
-    	        // 执行插入收藏条目的SQL语句
     	        statement.executeUpdate();
     	    } catch (SQLException e) {
     	        e.printStackTrace();
     	    }
-//            System.out.println("Job collected successfully.");
         }
 	    
 	    String action = request.getParameter("action");
@@ -126,12 +120,10 @@ public class ResumeServlet extends HttpServlet {
     	        int resumeID = Integer.parseInt(request.getParameter("resumeID"));
     	        statement.setInt(1, resumeID);
     	        System.out.println(resumeID);
-    	        // 执行插入收藏条目的SQL语句
     	        statement.executeUpdate();
     	    } catch (SQLException e) {
     	        e.printStackTrace();
     	    }
-//            System.out.println("Job collected successfully.");
         }
 	}
 	
@@ -203,7 +195,6 @@ public class ResumeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// 获取当前用户的 ID
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
@@ -216,7 +207,6 @@ public class ResumeServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-	    // 从请求参数中获取更新的字段值
 	    String userName = request.getParameter("userName");
 	    String email = request.getParameter("email");
 	    String gender = request.getParameter("gender");
@@ -224,7 +214,6 @@ public class ResumeServlet extends HttpServlet {
 	    String level = request.getParameter("level");
 	    String department = request.getParameter("department");
 
-	    // 更新数据库中的数据
 	    String updateQuery = "UPDATE USER SET userName = ?, email = ? WHERE uID = ?";
 	    String candidateUpdateQuery = "UPDATE CANDIDATE SET gender = ?, age = ?, level = ?, department = ? WHERE uID = ?";
 	    try {
@@ -247,7 +236,6 @@ public class ResumeServlet extends HttpServlet {
 	        e.printStackTrace();
 	    }
 
-	    // 重定向到 ResumeServlet，重新加载数据并显示在 Resume.jsp 页面上
 	    response.sendRedirect("ResumeServlet");
 	}
 

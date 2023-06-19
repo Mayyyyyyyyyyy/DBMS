@@ -106,7 +106,7 @@
         <input type="submit" value='註冊' class="register-button">
       </div>
     </form>
-    <p>已經有帳號了？<a href="Login.jsp">登入</a></p>
+    <p>已經有帳號了？<a href="LoginServlet">登入</a></p>
   </div>
 </body>
 

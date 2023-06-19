@@ -6,7 +6,6 @@ public class Job {
 	private int jID;
 	private int cID;
 
-    // 建構函式和getter/setter方法
 
     public Job() {
     }
@@ -49,20 +48,4 @@ public class Job {
 	public void setcID(int cID) {
 		this.cID = cID;
 	}
-
-//    public String getJobName() {
-//        return jobName;
-//    }
-//
-//    public void setJobName(String jobName) {
-//        this.jobName = jobName;
-//    }
-//
-//    public String getJContent() {
-//        return jContent;
-//    }
-//
-//    public void setJContent(String jContent) {
-//        this.jContent = jContent;
-//    }
 }

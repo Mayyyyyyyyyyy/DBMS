@@ -63,12 +63,10 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 
-//		login
 		if (request.getParameter("loginAccount") == null) {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
 		

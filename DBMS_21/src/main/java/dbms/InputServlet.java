@@ -70,7 +70,6 @@ public class InputServlet extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("Input.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
 		
@@ -105,7 +104,7 @@ public class InputServlet extends HttpServlet {
         	statement.setString(3, content);	
         	statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("新增失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
         
         response.sendRedirect("InputServlet");

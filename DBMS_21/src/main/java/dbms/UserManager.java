@@ -3,7 +3,6 @@ package dbms;
 import java.sql.*;
 
 public class UserManager {
-    // 假設您已經建立了與資料庫的連接
 	private Connection connection;
     private boolean isLoggedIn;
     private String loggedInUser;
@@ -18,13 +17,11 @@ public class UserManager {
     }
 
     public void register(String userName, String account, String password, String email, String userType) {
-        // 檢查帳號是否已存在
         if (isAccountExists(account)) {
             System.out.println("帳號已存在");
             checkString2 = "l";
             return;
         }
-        // 建立新的使用者
         String userInsertQuery = "INSERT INTO USER (userName, account, password, email, userType) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement userInsertStatement = connection.prepareStatement(userInsertQuery)) {
         	userInsertStatement.setString(1, userName);
@@ -36,11 +33,9 @@ public class UserManager {
             registerUser = account;
             checkString2 = "r";
         } catch (SQLException e) {
-            System.out.println("註冊失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
 
-//        System.out.println("帳號註冊成功");
-//        return true;
     }
 
     private boolean isAccountExists(String account) {
@@ -53,20 +48,18 @@ public class UserManager {
                 return count > 0;
             }
         } catch (SQLException e) {
-            System.out.println("查詢失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
         return false;
     }
     
     public void login(String account, String password, String userType) {
-    	// 檢查帳號是否已存在
         if (!isAccountExists(account)) {
             System.out.println("請先註冊");
             checkString = "r";
             return;
         }
         
-        // 登入帳號
         String query = "SELECT COUNT(*) FROM USER WHERE account = ? AND password = ? AND userType = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, account);
@@ -86,16 +79,8 @@ public class UserManager {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("驗證失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
-//        System.out.println("登入失敗");
-//        checkString = "!l";
-    }
-        
-    public void logout() {
-        isLoggedIn = false;
-        loggedInUser = null;
-        System.out.println("已登出");
     }
 
     public boolean isLoggedIn() {
@@ -115,7 +100,7 @@ public class UserManager {
                 return resultSet.getString("userType");
             }
         } catch (SQLException e) {
-            System.out.println("查詢失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
         return null;
     }
@@ -131,7 +116,7 @@ public class UserManager {
                 throw new SQLException("User not found");
             }
         } catch (SQLException e) {
-            System.out.println("查詢失敗：" + e.getMessage());
+        	e.printStackTrace();
             throw e;
         }
     }

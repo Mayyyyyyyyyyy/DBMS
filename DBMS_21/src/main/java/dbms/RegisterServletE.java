@@ -75,7 +75,6 @@ public class RegisterServletE extends HttpServlet {
 		password = request.getParameter("employerPassword");
 		email = "";
 		userType = "e";
-//		
 		userManager = new UserManager(conn);
 		userManager.register(userName, account, password, email, userType);
 		if (userManager.getCheckString2().equals("l")) {

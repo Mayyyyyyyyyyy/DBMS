@@ -72,16 +72,13 @@ public class RecommendServlet extends HttpServlet {
         ArrayList<Job> jobRecommendList = new ArrayList<>();
 
         try {
-            // 获取用户的專長名稱或部門
             ArrayList<String> userSkills = getUserSkills(conn, account);
             String userDepartment = getUserDepartment(conn, account);
 
-            // 构建用于匹配的关键词列表
             Set<String> keywords = new HashSet<>();
             keywords.addAll(userSkills);
             keywords.add(userDepartment);
 
-            // 构建SQL查询语句
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.append("SELECT jID, jobName, jContent ");
             sqlBuilder.append("FROM JOB ");
@@ -96,7 +93,6 @@ public class RecommendServlet extends HttpServlet {
 
             PreparedStatement statement = conn.prepareStatement(sqlBuilder.toString());
 
-            // 设置关键词参数
             int parameterIndex = 1;
             for (String keyword : keywords) {
                 String keywordPattern = "%" + keyword + "%";
@@ -183,7 +179,6 @@ public class RecommendServlet extends HttpServlet {
 
     private void saveRecommendations(ArrayList<Job> jobRecommendList, Connection conn, String account) {
         try {
-            // Step 1: Remove recommendations that are not in the list
             Set<Integer> existingRecommendations = getExistingRecommendations(userManager.getUserId(account), conn);
 
             String deleteSql = "DELETE FROM RECOMMEND WHERE uID = ? AND jID = ?";
@@ -199,7 +194,6 @@ public class RecommendServlet extends HttpServlet {
 
             deleteStatement.close();
 
-            // Step 2: Add new recommendations that are not in the table
             String insertSql = "INSERT INTO RECOMMEND (uID, jID) VALUES (?, ?)";
             PreparedStatement insertStatement = conn.prepareStatement(insertSql);
 

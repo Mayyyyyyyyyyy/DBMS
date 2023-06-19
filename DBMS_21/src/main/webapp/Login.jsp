@@ -70,7 +70,7 @@
       </div>
       <div class="form-group">
         <label for="password">密碼:</label>
-        <input type="text" id="loginPassword" name="loginPassword" required>
+        <input type="password" id="loginPassword" name="loginPassword" required>
       </div>
       <!-- <div class="form-group">
         <button type="submit">登入</button>

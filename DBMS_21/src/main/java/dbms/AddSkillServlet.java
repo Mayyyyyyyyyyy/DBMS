@@ -1,5 +1,6 @@
 package dbms;
 
+import java.awt.print.PrinterException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -67,10 +68,8 @@ public class AddSkillServlet extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("AddSkill.jsp").forward(request, response);
-//			System.out.println("vvvvvvvvvvvv");
 			return;
 		}
-//		request.getRequestDispatcher("Supply.jsp").forward(request, response);
 		skillName = request.getParameter("skillName");
 		
 		String query = "SELECT COUNT(*) FROM MAJOR WHERE majorName = ?";
@@ -87,7 +86,7 @@ public class AddSkillServlet extends HttpServlet {
 		        }
 		    }
 		} catch (SQLException e) {
-		    System.out.println("查询失败：" + e.getMessage());
+			e.printStackTrace();
 		}
 
 		if (shouldInsert) {
@@ -96,7 +95,7 @@ public class AddSkillServlet extends HttpServlet {
 		        insertStatement.setString(1, skillName);
 		        insertStatement.executeUpdate();
 		    } catch (SQLException e) {
-		        System.out.println("新增失败：" + e.getMessage());
+		        e.printStackTrace();
 		    }
 		}
         
@@ -113,12 +112,12 @@ public class AddSkillServlet extends HttpServlet {
 	            	statement2.executeUpdate();
 	            	o = 1;
 	            } catch (SQLException e) {
-	                System.out.println("新增失敗：" + e.getMessage());
+	            	e.printStackTrace();
 	            }
         	}
 	            
         } catch (SQLException e) {
-            System.out.println("新增失敗：" + e.getMessage());
+        	e.printStackTrace();
         }
 		System.out.println("o");
         if(o == 1) {

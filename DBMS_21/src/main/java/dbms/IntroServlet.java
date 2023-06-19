@@ -77,7 +77,6 @@ public class IntroServlet extends HttpServlet {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
 			request.getRequestDispatcher("Intro.jsp").forward(request, response);
-			//					System.out.println("vvvvvvvvvvvv");
 			return;
 		}
 
@@ -88,7 +87,6 @@ public class IntroServlet extends HttpServlet {
 		email = request.getParameter("email");
 
 		userManager = RegisterServletC.userManager;
-		//				System.out.println(userManager.getRegisterUser());
 
 		String query = "UPDATE USER SET email = ? WHERE account = ?;";
 		try (PreparedStatement stat = conn.prepareStatement(query)) {

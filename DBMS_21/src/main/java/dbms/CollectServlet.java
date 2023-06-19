@@ -76,12 +76,10 @@ public class CollectServlet extends HttpServlet {
     	        statement.setInt(1, uID);
     	        statement.setInt(2, jID);
     	        System.out.println(jID);
-    	        // 执行插入收藏条目的SQL语句
     	        statement.executeUpdate();
     	    } catch (SQLException e) {
     	        e.printStackTrace();
     	    }
-//            System.out.println("Job collected successfully.");
         }
 	}
 	
