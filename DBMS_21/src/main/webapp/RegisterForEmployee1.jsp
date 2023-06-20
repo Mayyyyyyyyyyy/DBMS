@@ -63,30 +63,6 @@
 <body>
   <div class="container">
     <h2>註冊</h2>
-    <!-- <form action="intro.html" method="POST">
-      <div class="form-group">
-        <label for="name">姓名:</label>
-        <input type="text" id="name" required>
-      </div>
-      <div class="form-group">
-        <label for="account">帳號:</label>
-        <input type="text" id="account" required>
-      </div>
-      <div class="form-group">
-        <label for="password">密碼:</label>
-        <input type="password" id="password" required>
-      </div> -->
-      <!-- <div class="form-group"> -->
-        <!-- <label for="role">身份：</label>
-        <select id="role" name="role">
-          <option value="employer">雇主</option>
-          <option value="employee">求職者</option>
-        </select> -->
-      <!-- </div> -->
-      <!-- <div class="form-group">
-        <button type = "submit">下一步</button>
-      </div>
-    </form> -->
 
     <form id="EmployeeRigisterForm" action='${requestUri}' method='get'>
       <div class="form-group">
@@ -103,29 +79,12 @@
       </div>
       
       <div class="form-group">
-        <!--  <button type = "submit">下一步</button>-->
         <input type = "submit" value='下一步' class="register1-button">
       </div>
     </form>
 
     <script>
-      //document.getElementById("EmployeeRigisterForm").addEventListener("submit", function(event) {
-        //event.preventDefault(); // 阻止表單提交？
-  
-        //var name = document.getElementById("name").value;
-        //var account = document.getElementById("account").value;
-       // var password = document.getElementById("password").value;
-
-        // 在此处使用获取到的值进行后续操作（可能用不到）
-        // console.log("姓名: " + name);
-        // console.log("帳號: " + account);
-        // console.log("密碼: " + password);
-        
-        
-        
-        //window.location.href = "Intro.jsp"; // 求職者註冊页面
-        
-      });
+       
     </script>
 
     <p>已經有帳號了？<a href="LoginServlet">登入</a></p>

@@ -196,31 +196,10 @@ body {
 }
 </style>
 <script>
-	/* // Add your JavaScript code here to automatically scroll to the bottom of the message container
-	function scrollToBottom() {
-		var container = document.getElementById("message-container");
-		container.scrollTop = container.scrollHeight;
-	}
-
-	// Call the scrollToBottom function when the page finishes loading
-	window.onload = scrollToBottom; */
 </script>
 </head>
 <body>
 	<section class="msger">
-		<!--聊天 block-->
-		<%-- <div class="msger-chat" id="message-container">
-			<c:if test="${not empty messages}">
-				<c:forEach var="message" items="${messages}">
-					<div class="post">
-						<div class="msg-bubble">
-							<span style="display: none;">${message.sID}</span> <span
-								style="display: none;">${message.rID}</span> ${message.content}
-						</div>
-					</div>
-				</c:forEach>
-			</c:if>
-		</div> --%>
 		<!--聊天 block-->
 		<form id="input" action="${requestUri}" method="POST">
 		<div class="msger-inputarea">
@@ -229,7 +208,6 @@ body {
 		</div>
 		</form>
 	</section>
-	<!-- <script src="assets/js/main.js"></script> -->
 	<script>
 	</script>
 </body>

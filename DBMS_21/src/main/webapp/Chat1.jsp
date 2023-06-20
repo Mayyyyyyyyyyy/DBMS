@@ -221,14 +221,7 @@ body {
 				</c:forEach>
 			</c:if>
 		</div>
-		<!--聊天 block-->
-
-		<!-- <div class="msger-inputarea">
-			<input type="text" class="msger-input" id="msg" name="content" placeholder="說些什麼吧～">
-			<button type="button" id="send" class="msger-send-btn">發送訊息</button>
-		</div> -->
 	</section>
-	<!-- <script src="assets/js/main.js"></script> -->
 	<script>
 		setTimeout(function() {
 			location.reload();

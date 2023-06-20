@@ -175,20 +175,16 @@
 	    	    var action = button.getAttribute('data-action');
 	    	    var jID = button.getAttribute('data-jid');
 	    	    
-	    	    // 创建XMLHttpRequest对象
 	    	    var xhttp = new XMLHttpRequest();
 	    	    
-	    	    // 设置请求方法和URL
 	    	    xhttp.open("GET", "SearchServlet?action=" + encodeURIComponent(action) + "&jID=" + encodeURIComponent(jID), true);
 	    	    
-	    	    // 定义回调函数，处理收藏成功后的逻辑
 	    	    xhttp.onreadystatechange = function() {
 	    	      if (xhttp.readyState === 4 && xhttp.status === 200) {
 	    	        console.log("Job collected successfully.");
 	    	      }
 	    	    };
 	    	    
-	    	    // 发送请求
 	    	    xhttp.send();
 	    	  }
 
@@ -196,70 +192,8 @@
 	      function message(button) {
 	    	    var cID = button.getAttribute('data-cid');
 	    	  
-	    	    // 導航到ChatServlet並將cID作為參數傳遞
 	    	    window.location.href = "MessageServlet?cID=" + encodeURIComponent(cID);
 	    	}  
-        //var postsData = [
-          //{
-            //jobtitle: '行政助理',
-            //content: '詳細內容。'
-          //},
-          //{
-            //jobtitle: '前端工程師',
-            //content: '詳細內容。'
-           
-          //}
-        //];
-    
-        //for (var i = 0; i < postsData.length; i++) {
-          //var post = postsData[i];
-    
-        
-          //var postElement = document.createElement('div');
-          //postElement.className = 'post';
-    
-         
-          //var jobtitleElement = document.createElement('div');
-          //jobtitleElement.className = 'jobtitle';
-          //jobtitleElement.textContent = post.jobtitle;
-          //postElement.appendChild(jobtitleElement);
-    
-          // var salaryElement = document.createElement('div');
-          // salaryElement.className = 'salary';
-          // salaryElement.textContent = post.salary;
-          // postElement.appendChild(salaryElement);
-
-          // var requestElement = document.createElement('div');
-          // requestElement.className = 'request';
-          // requestElement.textContent = post.request;
-          // postElement.appendChild(requestElement);
-    
-          //var contentElement = document.createElement('div');
-          //contentElement.className = 'content';
-          //contentElement.textContent = post.content;
-          //postElement.appendChild(contentElement);
-  
-          //var buttonElement = document.createElement('button');
-       //buttonElement.textContent = '收藏';
-        //postElement.appendChild(buttonElement);
-
-        // Add click event listener to the button
-      //buttonElement.addEventListener('click', function() {
-      // Toggle the "clicked" class on the button
-      //this.classList.toggle('clicked');
-      //});
-
-
-        //var buttonElement1 = document.createElement('button');
-        //buttonElement1.textContent = '私訊';
-        //postElement.appendChild(buttonElement1);
-
-        //buttonElement1.addEventListener('click', function() {
-            //window.location.href = 'Chat1.jsp';
-        //});
-  
-          //document.getElementById('posts').appendChild(postElement);
-        //}
       </script>
       </div></div >
     

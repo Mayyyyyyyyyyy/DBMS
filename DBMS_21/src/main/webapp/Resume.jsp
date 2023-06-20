@@ -75,14 +75,6 @@
 	background-color: #e53b69;
 }
 
-/* .container {
-	max-width: 400px;
-	margin: 20px auto;
-	padding: 20px;
-	position: absolute;
-	top: 20px;
-	left: 20px;
-} */
 body {
 	font-family: Arial, sans-serif;
 }
@@ -129,12 +121,6 @@ button {
 
 	<h1>個人履歷</h1>
 	<div class='container'>
-
-		<!-- //zzzzzzzzzzzzzzzzzz -->
-		<!-- Gender Age Education：教育程度(下拉式選單）年級 科系
- -->
-		<!-- <%// 從資料庫裡面找
-%> -->
 
 		<h2>基本資訊</h2>
 		<!-- 這邊會將註冊時填入的資料從資料庫當中找出來放在這邊 -->
@@ -191,15 +177,12 @@ button {
 					var resumeID = button.getAttribute('data-resumeid');
 					var postElement = button.parentNode;
 
-					// 创建XMLHttpRequest对象
 					var xhttp = new XMLHttpRequest();
 
-					// 设置请求方法和URL
 					xhttp.open("GET", "ResumeServlet?action="
 							+ encodeURIComponent(action) + "&resumeID="
 							+ encodeURIComponent(resumeID), true);
 
-					// 定义回调函数，处理收藏成功后的逻辑
 					xhttp.onreadystatechange = function() {
 						if (xhttp.readyState === 4 && xhttp.status === 200) {
 							console.log("Resume deleted successfully.");
@@ -207,7 +190,6 @@ button {
 						}
 					};
 
-					// 发送请求
 					xhttp.send();
 				}
 				
@@ -216,15 +198,12 @@ button {
 					var mID = button.getAttribute('data-skillid');
 					var postElement = button.parentNode;
 
-					// 创建XMLHttpRequest对象
 					var xhttp = new XMLHttpRequest();
 
-					// 设置请求方法和URL
 					xhttp.open("GET", "ResumeServlet?action2="
 							+ encodeURIComponent(action2) + "&mID="
 							+ encodeURIComponent(mID), true);
 
-					// 定义回调函数，处理收藏成功后的逻辑
 					xhttp.onreadystatechange = function() {
 						if (xhttp.readyState === 4 && xhttp.status === 200) {
 							console.log("Skill deleted successfully.");
@@ -232,26 +211,12 @@ button {
 						}
 					};
 
-					// 发送请求
 					xhttp.send();
 				}
 			</script>
 
 
 
-		<!-- <label for="phone">電話號碼：</label>
-    <input type="tel" id="phone" name="phone">
-    <!-- <label for="address">地址：</label>
-    <textarea id="address" name="address"></textarea>
-
-    <label for="intro">簡介：</label>
-    <textarea id="intro" name="intro"></textarea>
-  
-  
-    <h2>技能</h2>
-    <label for="skills">技能：</label>
-    <textarea id="skills" name="skills"></textarea>
-  	<button type="submit">儲存</button> -->
 	</div>
 
 	<footer>

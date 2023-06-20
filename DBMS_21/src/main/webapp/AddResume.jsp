@@ -89,25 +89,14 @@
     </div>
     <div class="container">
     <h2>新增履歷</h2>
-    <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
     <form id="addResumeForm" action="${requestUri}" method="GET">
-  
-    <!-- <form action="${pageContext.request.contextPath}/publish" method="post"> -->
-    <!-- 不確定要用哪一個 -->
     <label for="resumeTitle">履歷標題:</label>
     <input type="text" id="resumeTitle" name="resumeTitle" required><br><br>
-    
-    <!-- <label for="salary">薪資待遇:</label>
-    <input type="text" id="salary" name="salary" required><br><br>
-    
-    <label for="education">學歷要求:</label>
-    <input type="text" id="education" name="education" required><br><br> -->
     
     <label for="description">履歷內容:</label>
     <textarea id="description" name="description" required></textarea><br><br>
     
     <div class="form-group">
-       <!--  <button type="submit">刊登</button> -->
         <input type = "submit" value='確認' class="add-button">
     </div>
   </form>
@@ -115,17 +104,6 @@
 
 
   <script>
-    //document.getElementById("supplyForm").addEventListener("submit", function(event) {
-      //event.preventDefault(); // 阻止表單提交
-  
-      
-
-      //var jTitle = document.getElementById("jobTitle").value;
-      //var jContent = document.getElementById("content").value;
-
-    
-    
-  //});
   </script>
 </body>
 </html>

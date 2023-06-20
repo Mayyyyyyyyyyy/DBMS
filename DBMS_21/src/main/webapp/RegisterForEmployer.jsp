@@ -71,30 +71,6 @@
 <body>
   <div class="container">
     <h2>註冊</h2>
-    <!-- <form action="intro.html" method="POST">
-      <div class="form-group">
-        <label for="name">姓名:</label>
-        <input type="text" id="name" required>
-      </div>
-      <div class="form-group">
-        <label for="account">帳號:</label>
-        <input type="text" id="account" required>
-      </div>
-      <div class="form-group">
-        <label for="password">密碼:</label>
-        <input type="password" id="password" required>
-      </div> -->
-      <!-- <div class="form-group"> -->
-        <!-- <label for="role">身份：</label>
-        <select id="role" name="role">
-          <option value="employer">雇主</option>
-          <option value="employee">求職者</option>
-        </select> -->
-      <!-- </div> -->
-      <!-- <div class="form-group">
-        <button type = "submit">下一步</button>
-      </div>
-    </form> -->
 
     <form id="EmployerRigisterForm" action='${requestUri}' method="GET">
       <div class="form-group">
@@ -111,7 +87,6 @@
       </div>
       
       <div class="form-group">
-        <!-- <button type = "submit">註冊</button> -->
         <input type="submit" value='註冊' class="register2-button">
       </div>
     </form>
@@ -119,25 +94,6 @@
   </div>
 </body>
     <script>
-      //document.getElementById("EmployerRigisterForm").addEventListener("submit", function(event) {
-        //event.preventDefault(); // 阻止表單提交？
-  
-        //var name = document.getElementById("name").value;
-        //var account = document.getElementById("account").value;
-        //var password = document.getElementById("password").value;
-
-        // 在此处使用获取到的值进行后续操作（可能用不到）
-        // console.log("姓名: " + name);
-        // console.log("帳號: " + account);
-        // console.log("密碼: " + password);
-        
-        // 先存到本地端，（之後修改存到資料庫）
-        // localStorage.setItem("registeredAccount", account);
-        // localStorage.setItem("registeredPassword", password);
-        
-        // window.location.href = "intro.html"; // 求職者註冊页面
-        
-      });
     </script>
 
    

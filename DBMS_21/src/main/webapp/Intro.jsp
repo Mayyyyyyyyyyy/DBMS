@@ -62,7 +62,6 @@
 <body>
   <div class="container">
     <h2>基本資料</h2>
-    <!-- zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz -->
     <form action='${requestUri}' method='get'>
       <div class="form-group">
         <label for="gender">性別:</label>
